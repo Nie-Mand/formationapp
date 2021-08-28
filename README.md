@@ -17,8 +17,7 @@ npm run dev
 npm run generate route myRoute /my-route
 ```
 
-> This will create a route file, and a controller, then adds the route to express
-> if the backslache is not provided, it'll be added automatically so **npm run generate route myRoute my-route** is also valid
+> This will create a route file, and a controller, then adds the route to express. If the backslache is not provided, it'll be added automatically so **npm run generate route myRoute my-route** is also valid
 
 ## Create A MongoDB Model Called myModel
 
