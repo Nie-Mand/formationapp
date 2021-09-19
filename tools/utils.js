@@ -17,8 +17,8 @@ router.get('/', controller.getAll${capitalize(title)}s)
 router.post('/', controller.create${capitalize(title)})
     
 router.get('/:id', controller.get${capitalize(title)})
-router.get('/:id', controller.update${capitalize(title)})
-router.get('/:id', controller.kill${capitalize(title)})
+router.put('/:id', controller.update${capitalize(title)})
+router.delete('/:id', controller.kill${capitalize(title)})
     
 export default router`,
     () => console.log(`Created ${title} Route`)
@@ -102,7 +102,9 @@ export const createService = async title => {
     filePath,
     `import ${capitalize(title)} from '../models/${title}.model'
     
-export const getAll${capitalize(title)}s = () => {}
+export const getAll${capitalize(title)}s = () => ${capitalize(
+      title
+    )}.find({}).lean()
 
 export const create${capitalize(title)} = data => {
     ${capitalize(title)}.create(data)
@@ -112,13 +114,14 @@ export const get${capitalize(title)} = id => {
     return ${capitalize(title)}.findById(id).lean()
 }
         
-export const update${capitalize(title)} = (id, data) => {
-    ${capitalize(title)}.findByIdAndUpdate(id, body)
-}
+export const update${capitalize(title)} = (id, data) => ${capitalize(
+      title
+    )}.findByIdAndUpdate(id, data)
         
-export const kill${capitalize(title)} = id => {
-    ${capitalize(title)}.findByIdAndDelete(id)
-}`,
+export const kill${capitalize(title)} = id => ${capitalize(
+      title
+    )}.findByIdAndDelete(id)
+`,
     () => console.log(`Created ${title} Service`)
   )
 }

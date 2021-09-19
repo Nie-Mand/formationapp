@@ -1,15 +1,11 @@
 import Mongoose from 'mongoose'
 
-const Connect = () => {
+const Connect = cb => {
   const uri = process.env.MONGO_URI
-  const options = {
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-
-  Mongoose.connect(uri, options).then(() => console.log('Mongo Connected'))
-
-  Mongoose.connection.on('error', e => console.error(e))
+  Mongoose.connect(uri)
+    .then(() => console.log('Mongo Connected'))
+    .then(cb)
+    .catch(console.error)
 }
+
 export default Connect
